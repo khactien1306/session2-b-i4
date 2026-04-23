@@ -1,0 +1,20 @@
+CREATE DATABASE dtb_bai4ss2;
+USE dtb_bai4ss2;
+
+ALTER TABLE USERS
+ADD COLUMN phone_new VARCHAR(15);
+
+UPDATE USERS
+SET phone_new = CAST(phone AS CHAR)
+LIMIT 10000;
+
+UPDATE USERS
+SET phone_new = '000000000'
+WHERE phone_new IS NULL;
+
+ALTER TABLE USERS
+DROP COLUMN phone;
+
+-- 5. Đổi tên
+ALTER TABLE USERS
+CHANGE phone_new phone VARCHAR(15);
